@@ -1,3 +1,6 @@
+# Database Generator
+# v0.4.0
+
 from random import randint
 import hashlib
 # ---------------------------------------------------------- #
@@ -10,7 +13,8 @@ def get_data(filename):
 firstnames = get_data(input("First name list: "))
 surnames = get_data(input("Surname list: "))
 passwords = get_data(input("Password list: "))
-mails = get_data(input("eMail list: "))
+passmode = input("Password mode:\nh = MD5 hashed | p = Plain Text: ")
+mails = get_data(input("Mail list: "))
 number_of_data = int(input("Number of data: "))
 # ---------------------------------------------------------- #
 temp_name = ""
@@ -37,7 +41,8 @@ while counter <= number_of_data:
 
     # Password
     temp_passwd = passwords[randint(1, len(passwords) - 1)]
-    temp_passwd = hashlib.md5(temp_passwd.encode("utf-8")).hexdigest()
+    if passmode in "Hh":
+        temp_passwd = hashlib.md5(temp_passwd.encode("utf-8")).hexdigest()
     print(temp_passwd)
 
     # Email
@@ -52,7 +57,7 @@ while counter <= number_of_data:
     # Continue
     counter += 1
 # ---------------------------------------------------------- #
-resultname = input("Save as: ")
+resultname = input("\nSave result as: ")
 with open(resultname, "w") as new_data:
     for item in resultbase:
         new_data.write(str(item) + "\n")
