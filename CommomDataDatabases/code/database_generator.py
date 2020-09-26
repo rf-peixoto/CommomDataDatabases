@@ -25,7 +25,7 @@ while counter <= number_of_data:
     temp_name = ""
     temp_mail = ""
     temp_passwd = ""
-    surnames_number = randint(0, 3)
+    surnames_number = randint(0, 2)
     surname_counter = 0
 
     # Name & Surname
