@@ -1,4 +1,4 @@
-NameDatabases
+CommonDataDatabases
 =============
 
-Text databases of last names from various countries
+Databases of names, passwords and email providers.
