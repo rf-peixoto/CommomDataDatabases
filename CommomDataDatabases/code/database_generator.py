@@ -52,7 +52,8 @@ while counter <= number_of_data:
     # Continue
     counter += 1
 # ---------------------------------------------------------- #
-with open("result.txt", "w") as new_data:
+resultname = input("Save as: ")
+with open(resultname, "w") as new_data:
     for item in resultbase:
         new_data.write(str(item) + "\n")
     new_data.close()
