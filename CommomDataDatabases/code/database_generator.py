@@ -60,7 +60,12 @@ while counter <= number_of_data:
 resultname = input("\nSave result as: ")
 with open(resultname, "w") as new_data:
     for item in resultbase:
-        new_data.write(str(item) + "\n")
+        item = str(item)
+        while "(" in item:
+            item = item.replace("(", "")
+        while ")" in item:
+            item = item.replace(")", "")
+        new_data.write(item + "\n")
     new_data.close()
 
 input("Done.")
