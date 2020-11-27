@@ -1,6 +1,5 @@
 # Database Generator
-# v0.4.0
-
+# v0.4.4
 from random import randint
 import hashlib
 # ---------------------------------------------------------- #
@@ -13,7 +12,7 @@ def get_data(filename):
 firstnames = get_data(input("First name list: "))
 surnames = get_data(input("Surname list: "))
 passwords = get_data(input("Password list: "))
-passmode = input("Password mode:\nh = MD5 hashed | p = Plain Text: ")
+passmode = input("Password mode:\nh = MD5 hashed | p = Plain Text: ").lower()
 mails = get_data(input("Mail list: "))
 number_of_data = int(input("Number of data: "))
 # ---------------------------------------------------------- #
@@ -37,21 +36,22 @@ while counter <= number_of_data:
     while surname_counter <= surnames_number:
         temp_name += " " + surnames[randint(1, len(surnames) - 1)]
         surname_counter += 1
-    print(temp_name)
+    #print(temp_name)
 
     # Password
     temp_passwd = passwords[randint(1, len(passwords) - 1)]
-    if passmode in "Hh":
+    if passmode == "h":
         temp_passwd = hashlib.md5(temp_passwd.encode("utf-8")).hexdigest()
-    print(temp_passwd)
+    #print(temp_passwd)
 
     # Email
     temp_mail += temp_name.lower()
     temp_mail = temp_mail.replace(" ", mail_divs[randint(1, len(mail_divs) - 1)])
     temp_mail += "@" + mails[randint(1, len(mails) - 1)]
-    print(temp_mail)
+    #print(temp_mail)
 
     # Save result:
+    print("{0}:{1}:{2}".format(temp_name, temp_mail, temp_passwd))
     resultbase.append((temp_name, temp_mail, temp_passwd))
 
     # Continue
@@ -59,8 +59,8 @@ while counter <= number_of_data:
 # ---------------------------------------------------------- #
 resultname = input("\nSave result as: ")
 with open(resultname, "w") as new_data:
-    for item in resultbase:
-        item = str(item)
+    for i in resultbase:
+        item = str(resultbase(i))
         while "(" in item:
             item = item.replace("(", "")
         while ")" in item:
