@@ -1,5 +1,5 @@
 # Database Generator
-# v0.4.4
+# v0.4.0
 from random import randint
 import hashlib
 # ---------------------------------------------------------- #
@@ -46,7 +46,8 @@ while counter <= number_of_data:
 
     # Email
     temp_mail += temp_name.lower()
-    temp_mail = temp_mail.replace(" ", mail_divs[randint(1, len(mail_divs) - 1)])
+    while " " in temp_mail:
+        temp_mail = temp_mail.replace(" ", mail_divs[randint(1, len(mail_divs) - 1)], 1)
     temp_mail += "@" + mails[randint(1, len(mails) - 1)]
     #print(temp_mail)
 
@@ -57,15 +58,16 @@ while counter <= number_of_data:
     # Continue
     counter += 1
 # ---------------------------------------------------------- #
-resultname = input("\nSave result as: ")
+resultname = "db" #input("\nSave result as: ")
 with open(resultname, "w") as new_data:
     for i in resultbase:
-        item = str(resultbase(i))
+        item = str(i)
         while "(" in item:
             item = item.replace("(", "")
         while ")" in item:
             item = item.replace(")", "")
         new_data.write(item + "\n")
+        # print("*", end="")
     new_data.close()
 
-input("Done.")
+input("\nDone.")
